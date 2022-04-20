@@ -1,0 +1,9 @@
+{
+	"name": "dfnewsree",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "0f6eea9e-3cb5-4761-91e6-b6ab2336363b",
+		"tenantId": "c0036a18-ae0b-42d6-88af-994dd79ad547"
+	}
+}
