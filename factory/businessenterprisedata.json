@@ -1,0 +1,9 @@
+{
+	"name": "businessenterprisedata",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "3d0f7d50-047a-410e-8adc-f31e0a671b7e",
+		"tenantId": "c0036a18-ae0b-42d6-88af-994dd79ad547"
+	}
+}
