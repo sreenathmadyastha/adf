@@ -16,6 +16,9 @@
 			"transformations": [
 				{
 					"name": "filter1"
+				},
+				{
+					"name": "AggregateComedyRatings"
 				}
 			],
 			"scriptLines": [
@@ -30,7 +33,9 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
-				"source1 filter(toInteger(year) >= 1910 && toInteger(year) <= 2000 && rlike(genres, 'Comedy')) ~> filter1"
+				"source1 filter(toInteger(year) >= 1910 && toInteger(year) <= 2000 && rlike(genres, 'Comedy')) ~> filter1",
+				"filter1 aggregate(groupBy(year),",
+				"     AverageComedyRating = avg(toInteger(Rating))) ~> AggregateComedyRatings"
 			]
 		}
 	}
