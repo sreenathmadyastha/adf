@@ -54,7 +54,7 @@
 				"          Column_3 as string,",
 				"          Column_4 as string",
 				"     ),",
-				"     umask: 0022,",
+				"     umask: 0000,",
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
