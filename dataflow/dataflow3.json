@@ -31,6 +31,18 @@
 			"transformations": [
 				{
 					"name": "select1"
+				},
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "select2"
+				},
+				{
+					"name": "union1"
+				},
+				{
+					"name": "select3"
 				}
 			],
 			"scriptLines": [
@@ -73,7 +85,44 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
-				"source1 sink(allowSchemaDrift: true,",
+				"source1 derive(Name = upper(Name)) ~> derivedColumn1",
+				"derivedColumn1 select(mapColumn(",
+				"          ProductID,",
+				"          Name,",
+				"          ProductNumber,",
+				"          Color,",
+				"          StandardCost,",
+				"          ListPrice,",
+				"          Size,",
+				"          Weight,",
+				"          ProductCategoryID,",
+				"          ProductModelID,",
+				"          SellStartDate,",
+				"          SellEndDate,",
+				"          DiscontinuedDate,",
+				"          ThumbNailPhoto,",
+				"          ThumbnailPhotoFileName,",
+				"          rowguid,",
+				"          ModifiedDate",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select2",
+				"select2, select1 union(byName: true)~> union1",
+				"union1 select(mapColumn(",
+				"          ProductID,",
+				"          Name,",
+				"          ProductNumber,",
+				"          Color,",
+				"          StandardCost,",
+				"          ListPrice,",
+				"          Size,",
+				"          Weight,",
+				"          ProductCategoryID,",
+				"          ProductModelID",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select3",
+				"select3 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          Column_1 as string,",
